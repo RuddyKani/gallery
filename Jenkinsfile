@@ -34,7 +34,7 @@ pipeline {
     stages {
         stage('clone repository') {
           steps {
-            git 'https://https://github.com/RuddyKani/gallery'
+            git 'https://github.com/RuddyKani/gallery'
           }
         }
         stage('Build project') {
