@@ -40,7 +40,7 @@ pipeline {
         stage('Build project') {
             steps {
                 sh 'npm install'
-                sh 'node server.js'
+                
             }
         }
         stage('Tests') {
