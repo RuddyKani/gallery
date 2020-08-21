@@ -40,7 +40,7 @@ pipeline {
         stage('Build project') {
             steps {
                 sh 'npm install'
-                
+
             }
         }
         stage('Tests') {
@@ -50,7 +50,7 @@ pipeline {
         }
         stage('Deploy to Heroku') {
             steps {
-                withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
+                withCredentials([usernameColonPassword(credentialsId: 'gallery', variable: 'HEROKU_CREDENTIALS' )]){
                     sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/young-fortress-73746.git master'
                     }
             }
