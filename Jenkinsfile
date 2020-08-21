@@ -29,7 +29,7 @@ pipeline {
 
     }
     tools {
-    gradle "Gradle-6"
+      nodejs "NodeJS"
     }
     stages {
         stage('clone repository') {
@@ -45,13 +45,13 @@ pipeline {
         }
         stage('Tests') {
           steps {
-            sh 'gradle test'
+            echo 'test'
           }
         }
         stage('Deploy to Heroku') {
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/fast-island-70972.git master'
+                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/young-fortress-73746.git master'
                     }
             }
         }
