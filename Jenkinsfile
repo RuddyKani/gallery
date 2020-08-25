@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Tests') {
           steps {
-            echo 'test'
+            sh 'npm test'
           }
         }
         stage('Deploy to Heroku') {
