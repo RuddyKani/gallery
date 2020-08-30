@@ -63,7 +63,9 @@ pipeline {
 
                 subject: EMAIL_SUBJECT_SUCCESS,
 
-                to: EMAIL_RECEPIENT
+                to: EMAIL_RECEPIENT,
+
+                slackSend "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
 
         failure {
@@ -72,7 +74,10 @@ pipeline {
 
                 subject: EMAIL_SUBJECT_FAILURE,
 
-                to: EMAIL_RECEPIENT
+                to: EMAIL_RECEPIENT,
+
+                slackSend "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+
         }
     }
 }
