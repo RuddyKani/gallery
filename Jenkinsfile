@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Tests') {
           steps {
-            sh 'npm test'
+            echo 'npm test'
           }
         }
         stage('Deploy to Heroku') {
@@ -55,6 +55,11 @@ pipeline {
                     }
             }
         }
+        stage('Slack Notification') {
+          steps {
+            slackSend color: "good", message: "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+          }
+        }
     }
     post {
         success {
@@ -63,9 +68,9 @@ pipeline {
 
                 subject: EMAIL_SUBJECT_SUCCESS,
 
-                to: EMAIL_RECEPIENT,
+                to: EMAIL_RECEPIENT
 
-                slackSend "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+
         }
 
         failure {
@@ -74,9 +79,7 @@ pipeline {
 
                 subject: EMAIL_SUBJECT_FAILURE,
 
-                to: EMAIL_RECEPIENT,
-
-                slackSend "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                to: EMAIL_RECEPIENT
 
         }
     }
