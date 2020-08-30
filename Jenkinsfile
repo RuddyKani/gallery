@@ -60,11 +60,7 @@ pipeline {
             slackSend color: "good", message: "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
           }
         }
-        catch (err){
-          slackSend color: "warning", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 
-          throw err
-        }
     }
     post {
         success {
@@ -87,5 +83,15 @@ pipeline {
                 to: EMAIL_RECEPIENT
 
         }
+
+        post {
+            success {
+                slackSend color: "good", message: "Build Successful post - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+
+            }
+
+            failure {
+                slackSend color: "warning", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            }
     }
 }
