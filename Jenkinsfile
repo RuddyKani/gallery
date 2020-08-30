@@ -86,3 +86,4 @@ slackSend color: "good", message: "Build Successful post - ${env.JOB_NAME} ${env
         }
 
 }
+}
