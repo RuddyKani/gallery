@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Tests') {
           steps {
-            echo 'npm test'
+            sh 'npm test'
           }
         }
         stage('Deploy to Heroku') {
@@ -59,6 +59,11 @@ pipeline {
           steps {
             slackSend color: "good", message: "Build Successful - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
           }
+        }
+        catch (err){
+          slackSend color: "warning", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+
+          throw err
         }
     }
     post {
