@@ -84,14 +84,15 @@ pipeline {
 
         }
 
-        post {
-            success {
-                slackSend color: "good", message: "Build Successful post - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 
-            }
+}
+post {
+    success {
+        slackSend color: "good", message: "Build Successful post - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 
-            failure {
-                slackSend color: "warning", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-            }
+    }
+
+    failure {
+        slackSend color: "warning", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
     }
 }
